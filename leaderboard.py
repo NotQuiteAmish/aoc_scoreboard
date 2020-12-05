@@ -22,19 +22,24 @@ members = leaderboard_json['members']
 
 def get_star_time(member, date, part):
     try:   
-        time = datetime.fromtimestamp(int(member['completion_day_level'][str(date)][str(part)]['get_star_ts'])).strftime('%H:%M:%S')
+        time = datetime.fromtimestamp(int(member['completion_day_level'][str(date)][str(part)]['get_star_ts'])).strftime('%m/%d    %H:%M:%S')
         return time
     except:
         return None
 
+def nonesorter(a):
+    if not a:
+        return 'Incomplete'
+    return a
 
+print('<style>\n' + open('style.css').read() + '\n</style>')
 for day in range(1, 6):
-    rows = sorted([[member['name'], 
+    rows = sorted([[member['name'] or '(#'+member['id']+')', 
                     get_star_time(member, day, 1), 
                     get_star_time(member, day, 2)]  
-                   for member in members.values()], key=lambda row: row[2])
-    print(tabulate(rows, headers=['Day '+str(day), 'Part 1', 'Part 2']))
-    print()
+                   for member in members.values()], key=lambda row: nonesorter(row[2]))
+    print(tabulate(rows, headers=['Day '+str(day), 'Part 1', 'Part 2'], tablefmt='html'))
+    print('<br>')
 
 
 
