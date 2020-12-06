@@ -36,6 +36,14 @@ def print_day_ranking(day, members):
     print(tabulate(rows, headers=['Day '+str(day), 'Part 1', 'Part 2'], tablefmt='simple'))
     print('\n\n')
 
+def find_highest_day(members):
+    highest_day = 0
+    for member in members.values():
+        for day in range(1, 26):
+            if get_star_time(member, day, 1):
+                highest_day = max(highest_day, day)
+    return(highest_day)
+
 
 
 leaderboard_url = config.leaderboard_url
@@ -45,7 +53,9 @@ leaderboard_json = json.loads(webpage)
 
 members = leaderboard_json['members']
 
-for day in range(1, 6):
+highest_day = find_highest_day(members)
+
+for day in range(1, highest_day + 1):
     print_day_ranking(day, members)
 
 

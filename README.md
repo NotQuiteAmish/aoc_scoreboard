@@ -1,10 +1,13 @@
 # Advent of Code Leaderboard Parser
 
-This is a program to parse the JSON given by the Advent of Code API for local leaderboards.
+This is a program to parse the JSON given by the Advent of Code API for local leaderboards. 
+
+Currently, the only feature is that it will print out the 
 
 ## Installation
 
-`git clone git@github.com:NotQuiteAmish/aoc_scoreboard.git`
+`git clone git@github.com:NotQuiteAmish/aoc_scoreboard.git` \
+
 `pip install -r requirements.txt`
 
 ## Running the program
