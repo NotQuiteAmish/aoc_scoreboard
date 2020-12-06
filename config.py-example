@@ -1,0 +1,4 @@
+leaderboard_url = 'adventofcode.com/2020/leaderboard/private/view/LEADERBOARD_ID.json'
+
+# Value of "session" for cookie
+session_cookie = '<cookie_value>'
