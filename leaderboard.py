@@ -5,12 +5,7 @@ from bs4 import BeautifulSoup
 from tabulate import tabulate
 from datetime import datetime
 
-leaderboard_url = config.leaderboard_url
 
-webpage = requests.get(leaderboard_url, cookies={'session':config.session_cookie}).text
-leaderboard_json = json.loads(webpage)
-
-members = leaderboard_json['members']
 
 # rows = []
 # for member in members.values():
@@ -32,14 +27,26 @@ def nonesorter(a):
         return 'Incomplete'
     return a
 
-print('<style>\n' + open('style.css').read() + '\n</style>')
-for day in range(1, 6):
+def print_day_ranking(day, members):
+    '''Print out the times for each person for a specific day'''
     rows = sorted([[member['name'] or '(#'+member['id']+')', 
                     get_star_time(member, day, 1), 
                     get_star_time(member, day, 2)]  
                    for member in members.values()], key=lambda row: nonesorter(row[2]))
-    print(tabulate(rows, headers=['Day '+str(day), 'Part 1', 'Part 2'], tablefmt='html'))
-    print('<br>')
+    print(tabulate(rows, headers=['Day '+str(day), 'Part 1', 'Part 2'], tablefmt='simple'))
+    print('\n\n')
+
+
+
+leaderboard_url = config.leaderboard_url
+
+webpage = requests.get(leaderboard_url, cookies={'session':config.session_cookie}).text
+leaderboard_json = json.loads(webpage)
+
+members = leaderboard_json['members']
+
+for day in range(1, 6):
+    print_day_ranking(day, members)
 
 
 
