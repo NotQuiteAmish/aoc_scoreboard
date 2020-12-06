@@ -2,11 +2,11 @@
 
 This is a program to parse the JSON given by the Advent of Code API for local leaderboards. 
 
-Currently, the only feature is that it will print out the 
+Currently, the only feature is that it will print out the completion times for each user, day by day.
 
 ## Installation
 
-`git clone git@github.com:NotQuiteAmish/aoc_scoreboard.git` \
+`git clone git@github.com:NotQuiteAmish/aoc_scoreboard.git` 
 
 `pip install -r requirements.txt`
 
